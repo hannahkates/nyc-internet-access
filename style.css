@@ -20,25 +20,28 @@ select {
   font-family: 'Open Sans', sans-serif;
 }
 
+.caption {
+    font-family: 'Anaheim', sans-serif;
+    font-size: 2rem;
+    fill: #000;
+    text-anchor: start;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
+  border: 16px solid black; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 100px;
   height: 100px;
   animation: spin 2s linear infinite;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.legend {
-  display: table;
-  margin: 0 auto;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 12px;
-  height: 35px;
-  width: 250px;
 }

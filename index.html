@@ -12,10 +12,11 @@
     <h1>Which NYC neighborhoods have the least access to broadband internet?</h1>
     <p>What is broadband? <a href="https://www.fcc.gov/general/types-broadband-connections#:~:text=The%20term%20broadband%20commonly%20refers,Cable%20Modem">Learn more from the FCC.</a></p>
   </div>
+  <p>Select which variable to map:</p>
   <select id="variable-options" name="variable-options" onchange="renderMap()">
-      <option value ="home" selected>% of Households without Broadband at Home</option>
-      <option value ="mobile">% of Households without Mobile Broadband</option>
-      <option value ="total">% of Households without Any Broadband Access</option>
+      <option value="home" selected>% of Households without Broadband at Home</option>
+      <option value="mobile">% of Households without Mobile Broadband</option>
+      <option value="total">% of Households without Any Broadband Access</option>
   </select>
 
   <!-- Create an element where the map will take place -->
@@ -28,5 +29,6 @@
   <script src="http://d3js.org/d3.v4.js"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
   <script src="map.js"></script>
 </body>
