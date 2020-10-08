@@ -3,6 +3,11 @@ var dropdown = d3.select("#variable-options");
 
 // function for loading the data and creating the d3 map
 function renderMap() {
+  console.log('render map triggered', new Date().getSeconds());
+  //clear way for the regeneration
+  d3.selectAll("path").remove();
+  // make load spinner visible
+  document.getElementsByClassName('loader')[0].style.visibility = 'visible';
 
   // The svg
   var svg = d3.select("svg"),
@@ -20,8 +25,6 @@ function renderMap() {
     .domain([.1, .2, .3, .4, .5])
     .range(d3.schemeBlues[5]);
 
-  console.log('i am triggered');
-
   var variableName = dropdown.node().options[dropdown.node().selectedIndex].value;
   var fieldName
 
@@ -35,6 +38,7 @@ function renderMap() {
     console.log('no field selected by user');
   }
 
+  console.log('loading data', new Date().getSeconds());
   // Load external data and boot
   d3.queue()
     .defer(d3.json, "https://data.cityofnewyork.us/api/geospatial/yfnk-k7r4?method=export&format=GeoJSON")
@@ -45,9 +49,7 @@ function renderMap() {
     .await(ready);
 
   function ready(error, cds) {
-
-    //clear way for the regeneration
-    d3.selectAll("path").remove();
+    console.log('data loaded', new Date().getSeconds());
 
     path = d3.geoPath().projection(
       d3.geoConicConformal()
@@ -69,6 +71,9 @@ function renderMap() {
         d.total = data.get(d.properties.boro_cd) || 0;
         return colorScale(d.total);
       });
+
+    document.getElementsByClassName('loader')[0].style.visibility = 'hidden';
+    console.log('done', new Date().getSeconds());
   }
 }
 

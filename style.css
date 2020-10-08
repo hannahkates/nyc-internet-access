@@ -1,0 +1,44 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  background-color: #edf7ff;
+  text-align: center;
+}
+
+.header {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-family: 'Anaheim', sans-serif;
+  font-size: 3rem;
+}
+
+select {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.legend {
+  display: table;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  height: 35px;
+  width: 250px;
+}
