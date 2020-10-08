@@ -1,26 +1,9 @@
-// select drop down menu
-var dropdown = d3.select("#variable-options");
-
 // function for loading the data and creating the d3 map
 function renderMap() {
   console.log('render map triggered', new Date().getSeconds());
 
-  //clear all g elements for the regeneration of the map and legend
-  d3.selectAll("g").remove();
-
-  // make load spinner visible
-  document.getElementsByClassName('loader')[0].style.visibility = 'visible';
-
-  // The svg
-  var svg = d3.select("svg"),
-    width = getInnerWidth(),
-    height = getInnerHeight();
-
-  svg.attr("width", width);
-  svg.attr("height", height);
-
-  // TODO: understand what this is doing
-  var data = d3.map();
+  // select drop down menu
+  var dropdown = d3.select("#variable-options");
 
   // Get the variable currently selected in the dropdown menu
   var variableName = dropdown.node().options[dropdown.node().selectedIndex].value;
@@ -41,6 +24,26 @@ function renderMap() {
   } else {
     console.log('no field selected by user');
   }
+
+  //clear all g elements for the regeneration of the map and legend
+  d3.selectAll("g").remove();
+
+  // make load spinner visible
+  var loader = document.createElement('div');
+  loader.className = 'loader';
+  loader.id = 'the-loader';
+  document.getElementById('loader-container').appendChild(loader);
+
+  // The svg
+  var svg = d3.select("svg"),
+    width = getInnerWidth(),
+    height = getInnerHeight();
+
+  svg.attr("width", width);
+  svg.attr("height", height);
+
+  // TODO: understand what this is doing
+  var data = d3.map();
 
   console.log('loading data', new Date().getSeconds());
   // Load external data and boot
@@ -85,12 +88,7 @@ function renderMap() {
       // Legend
       var g = svg.append("g")
           .attr("class", "legendThreshold")
-          .attr("transform", "translate(20,20)");
-      g.append("text")
-          .attr("class", "caption")
-          .attr("x", 0)
-          .attr("y", -6)
-          .text(legendTitle);
+          .attr("transform", "translate(0,10)");
       var labels = ['0-10%', '11-20%', '21-30%', '31-40%', '41-50%'];
       var legend = d3.legendColor()
           .labels(function (d) { return labels[d.i]; })
@@ -99,17 +97,17 @@ function renderMap() {
       svg.select(".legendThreshold")
           .call(legend);
 
-    document.getElementsByClassName('loader')[0].style.visibility = 'hidden';
+    document.getElementById("the-loader").remove();
     console.log('done', new Date().getSeconds());
   }
 }
 
 function getInnerWidth() {
-  return parseFloat(window.getComputedStyle(document.getElementById("my-map"), null).getPropertyValue("width"));
+  return parseFloat(window.getComputedStyle(document.getElementById("map-canvas"), null).getPropertyValue("width"));
 }
 
 function getInnerHeight() {
-  return parseFloat(window.getComputedStyle(document.getElementById("my-map"), null).getPropertyValue("height"));
+  return parseFloat(window.getComputedStyle(document.getElementById("map-canvas"), null).getPropertyValue("height"));
 }
 
 // setup resize events

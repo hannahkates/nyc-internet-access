@@ -1,28 +1,46 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  padding: 0px;
-  background-color: #edf7ff;
-  text-align: center;
+  padding: 2rem;
+  padding-top: 0.5rem;
 }
 
+svg {
+  padding: 0rem;
+}
+
+
 .header {
-  max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+  margin-bottom: 2em;
 }
 
 h1 {
   font-family: 'Anaheim', sans-serif;
-  font-size: 3rem;
+  font-size: 2.2rem;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  font-style: italic;
+  margin-bottom: 0.2rem;
+  color: grey;
 }
 
 select {
   font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
 }
 
 .caption {
     font-family: 'Anaheim', sans-serif;
-    font-size: 2rem;
+    font-size: 1.2rem;
     fill: #000;
     text-anchor: start;
     font-weight: bold;
@@ -30,7 +48,7 @@ select {
 }
 
 .loader {
-  border: 16px solid black; /* Light grey */
+  border: 16px solid #303030; /* dark grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 100px;
@@ -38,7 +56,8 @@ select {
   animation: spin 2s linear infinite;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2em;
+  margin-top: 1rem;
+  padding: 0rem;
 }
 
 @keyframes spin {

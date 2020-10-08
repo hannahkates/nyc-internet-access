@@ -10,19 +10,33 @@
 <body>
   <div class="header">
     <h1>Which NYC neighborhoods have the least access to broadband internet?</h1>
-    <p>What is broadband? <a href="https://www.fcc.gov/general/types-broadband-connections#:~:text=The%20term%20broadband%20commonly%20refers,Cable%20Modem">Learn more from the FCC.</a></p>
+    <p>
+      What is broadband?
+      <a target="_blank" href="https://www.fcc.gov/general/types-broadband-connections#:~:text=The%20term%20broadband%20commonly%20refers,Cable%20Modem">
+        Learn more from the FCC.
+      </a>
+    </p>
+    <p>
+      Check out NYC's
+      <a target="_blank" href="https://www1.nyc.gov/assets/cto/#/project/internet-master-plan">
+        Internet Master Plan
+      </a>
+      to learn about the City's plans to address the digital divide.
+    </p>
   </div>
-  <p>Select which variable to map:</p>
-  <select id="variable-options" name="variable-options" onchange="renderMap()">
-      <option value="home" selected>% of Households without Broadband at Home</option>
-      <option value="mobile">% of Households without Mobile Broadband</option>
-      <option value="total">% of Households without Any Broadband Access</option>
-  </select>
 
   <!-- Create an element where the map will take place -->
-  <div class="loader"></div>
-  <div id="my-map">
-    <svg id="my_dataviz" height="500"></svg>
+  <div id="map-canvas">
+    <p class="instructions">Select which variable to map:</p>
+    <select id="variable-options" name="variable-options" onchange="renderMap()">
+        <option value="home" selected>% of Households without Broadband at Home</option>
+        <option value="mobile">% of Households without Mobile Broadband</option>
+        <option value="total">% of Households without Any Broadband Access</option>
+    </select>
+    <div id="loader-container">
+      <!-- <div class="loader"></div> -->
+    </div>
+    <svg id="my_dataviz" height="200"></svg>
   </div>
 
   <!-- Load d3.js -->
