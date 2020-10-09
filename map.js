@@ -1,6 +1,3 @@
-csvData = d3.csv("https://data.cityofnewyork.us/api/views/rxpf-yca2/rows.csv?accessType=DOWNLOAD");
-console.log(csvData);
-
 // function for loading the data and creating the d3 map
 function renderMap() {
   console.log('render map triggered', new Date().getSeconds());
@@ -51,7 +48,7 @@ function renderMap() {
   console.log('loading data', new Date().getSeconds());
   // Load external data and boot
   d3.queue()
-    .defer(d3.json, "https://data.cityofnewyork.us/api/geospatial/yfnk-k7r4?method=export&format=GeoJSON")
+    .defer(d3.json, "/data/Community Districts.geojson")
     .defer(d3.csv, "https://data.cityofnewyork.us/api/views/rxpf-yca2/rows.csv?accessType=DOWNLOAD",
       function(d) {
         data.set(d["Community District"], +d[fieldName]);
