@@ -1,3 +1,6 @@
+csvData = d3.csv("https://data.cityofnewyork.us/api/views/rxpf-yca2/rows.csv?accessType=DOWNLOAD");
+console.log(csvData);
+
 // function for loading the data and creating the d3 map
 function renderMap() {
   console.log('render map triggered', new Date().getSeconds());
