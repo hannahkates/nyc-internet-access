@@ -1,6 +1,5 @@
 // function for loading the data and creating the d3 map
-function renderMap() {
-  console.log('render map triggered', new Date().getSeconds());
+function renderMap(width, height) {
 
   // select drop down menu
   var dropdown = d3.select("#variable-options");
@@ -36,8 +35,8 @@ function renderMap() {
 
   // The svg
   var svg = d3.select("svg"),
-    width = getInnerWidth(),
-    height = getInnerHeight();
+    width = width,
+    height = height;
 
   svg.attr("width", width);
   svg.attr("height", height);
@@ -45,7 +44,6 @@ function renderMap() {
   // TODO: understand what this is doing
   var data = d3.map();
 
-  console.log('loading data', new Date().getSeconds());
   // Load external data and boot
   d3.queue()
     .defer(d3.json, "https://www.hannahkates.com/nyc-internet-access/data/Community%20Districts.geojson")
@@ -56,7 +54,6 @@ function renderMap() {
     .await(ready);
 
   function ready(error, cds) {
-    console.log('data loaded', new Date().getSeconds());
 
     path = d3.geoPath().projection(
       d3.geoConicConformal()
@@ -98,8 +95,13 @@ function renderMap() {
           .call(legend);
 
     document.getElementById("the-loader").remove();
-    console.log('done', new Date().getSeconds());
   }
+}
+
+function resizeMap() {
+  var newWidth = getInnerWidth();
+  var newHeight = getInnerHeight();
+  renderMap(newWidth, newHeight);
 }
 
 function getInnerWidth() {
@@ -111,6 +113,9 @@ function getInnerHeight() {
 }
 
 // setup resize events
-window.addEventListener("resize", renderMap);
+window.addEventListener("resize", resizeMap);
 
-renderMap();
+var width = getInnerWidth();
+var height = getInnerHeight();
+
+renderMap(width, height);
