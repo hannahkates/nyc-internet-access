@@ -48,7 +48,7 @@ function renderMap() {
   console.log('loading data', new Date().getSeconds());
   // Load external data and boot
   d3.queue()
-    .defer(d3.json, "/data/Community Districts.geojson")
+    .defer(d3.json, "https://www.hannahkates.com/nyc-internet-access/data/Community%20Districts.geojson")
     .defer(d3.csv, "https://data.cityofnewyork.us/api/views/rxpf-yca2/rows.csv?accessType=DOWNLOAD",
       function(d) {
         data.set(d["Community District"], +d[fieldName]);
