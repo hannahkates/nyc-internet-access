@@ -109,6 +109,7 @@ function renderMap(width, height) {
         d.total = data.get(d.properties.boro_cd) || 0;
         return colorScale(d.total);
       })
+      .attr("stroke", "#2e2e2e")
       .on('mouseover', tool_tip.show)
       .on('mouseout', tool_tip.hide);
 
