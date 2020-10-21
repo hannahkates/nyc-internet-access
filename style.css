@@ -94,3 +94,15 @@ select {
   top: 100%;
   left: 0;
 }
+
+img.logo {
+  width: 1.2rem;
+  padding-top: .3rem
+}
+
+.footer {
+  font-family: 'Anaheim', sans-serif;
+  padding-top: 4em;
+  padding-bottom: 2em;
+  text-align: center;
+}

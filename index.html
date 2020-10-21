@@ -1,48 +1,86 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180329200-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-<link rel="icon"
-  type="image/ico"
-  href="images/favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Open+Sans&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"/>
+      gtag('config', 'UA-180329200-1');
+    </script>
 
-<body>
-  <div class="header">
-    <h1>Which NYC neighborhoods have the least access to broadband internet?</h1>
-    <p>
-      What is broadband?
-      <a target="_blank" href="https://www.fcc.gov/general/types-broadband-connections#:~:text=The%20term%20broadband%20commonly%20refers,Cable%20Modem">
-        Learn more from the FCC.
-      </a>
-    </p>
-    <p>
-      Check out NYC's
-      <a target="_blank" href="https://www1.nyc.gov/assets/cto/#/project/internet-master-plan">
-        Internet Master Plan
-      </a>
-      to learn about the City's plans to address the digital divide.
-    </p>
-  </div>
+    <title>Which NYC neighborhoods have the least access to broadband internet?</title>
+    <meta name="description" content="An interactive map showing the percent of households that lack access to broadband internet per NYC Community District. Digital divide data is sourced from the NYC Internet Master Plan and NYC Open Data." />
+    <meta property="og:url" content="http://www.hannahkates.com/nyc-internet-access" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.hannahkates.com/nyc-internet-access/images/social.png" />
+    <meta property="og:title" content="Which NYC neighborhoods have the least access to broadband internet?" />
+    <meta property="og:description" content="An interactive map showing the percent of households that lack access to broadband internet per NYC Community District. Digital divide data is sourced from the NYC Internet Master Plan and NYC Open Data" />
 
-  <!-- Create an element where the map will take place -->
-  <div id="map-canvas">
-    <p class="instructions">Select which variable to map:</p>
-    <select id="variable-options" name="variable-options" onchange="renderMap(width, height)">
-        <option value="home" selected>% of Households without Broadband at Home</option>
-        <option value="mobile">% of Households without Mobile Broadband</option>
-        <option value="total">% of Households without Any Broadband Access</option>
-    </select>
-    <div id="loader-container"></div>
-    <svg id="my_dataviz" height="520"></svg>
-  </div>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hbkateshb">
+    <meta name="twitter:creator" content="@hbkateshb">
+    <meta name="twitter:title" content="Which NYC neighborhoods have the least access to broadband internet?">
+    <meta name="twitter:description" content="An interactive map showing the percent of households that lack access to broadband internet per NYC Community District. Digital divide data is sourced from the NYC Internet Master Plan and NYC Open Data">
+    <meta name="twitter:image" content="http://www.hannahkates.com/nyc-internet-access/images/social.png">
+    <meta name="twitter:image:alt" content="An interactive map showing the percent of households that lack access to broadband internet per NYC Community District.">
 
-  <!-- Load d3.js -->
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
-  <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-  <script src="d3-tip.js"></script>
-  <script src="map.js"></script>
-</body>
+    <link rel="icon"
+      type="image/ico"
+      href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Anaheim&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>Which NYC neighborhoods have the least access to broadband internet?</h1>
+      <p>
+        What is broadband?
+        <a target="_blank" href="https://www.fcc.gov/general/types-broadband-connections#:~:text=The%20term%20broadband%20commonly%20refers,Cable%20Modem">
+          Learn more from the FCC.
+        </a>
+      </p>
+      <p>
+        Check out NYC's
+        <a target="_blank" href="https://www1.nyc.gov/assets/cto/#/project/internet-master-plan">
+          Internet Master Plan
+        </a>
+        to learn about the City's plans to address the digital divide.
+      </p>
+    </div>
+
+    <!-- Create an element where the map will take place -->
+    <div id="map-canvas">
+      <p class="instructions">Select which variable to map:</p>
+      <select id="variable-options" name="variable-options" onchange="renderMap(width, height)">
+          <option value="home" selected>% of Households without Broadband at Home</option>
+          <option value="mobile">% of Households without Mobile Broadband</option>
+          <option value="total">% of Households without Any Broadband Access</option>
+      </select>
+      <div id="loader-container"></div>
+      <svg id="my_dataviz" height="520"></svg>
+    </div>
+
+    <div class="footer">
+     <hr>
+     <br>
+     <a href="https://github.com/hannahkates/nyc-internet-access" target="_blank">Hannah Kates, 2020</a>
+     <br>
+     <a id="github" href="https://github.com/hannahkates/nyc-internet-access" target="_blank">
+       <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png">
+     </a>
+    </div>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
+    <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="d3-tip.js"></script>
+    <script src="map.js"></script>
+  </body>
+</html>
