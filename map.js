@@ -68,26 +68,30 @@ function renderMap(width, height) {
       .domain([.1, .2, .3, .4, .5])
       .range(d3.schemeBlues[5]);
 
+    function recodeBoroCd(d) {
+      var boro_cd = d.properties.boro_cd;
+      var boro;
+      if (boro_cd > 500) {
+        boro = 'Staten Island';
+      } else if (boro_cd > 400) {
+        boro = 'Queens';
+      } else if (boro_cd > 300) {
+        boro = 'Brooklyn';
+      } else if (boro_cd > 200) {
+        boro = 'Bronx';
+      } else {
+        boro = 'Manhttan'
+      }
+      return `${boro} ${parseInt(boro_cd.slice(-2))}`;
+    };
+
     // Define the tooltop for hover
     var tool_tip = d3.tip()
       .attr('class', 'd3-tip')
-      .offset([-10, 0])
+      .offset([10, 0])
       .html(function(d) {
-        var boro_cd = d.properties.boro_cd;
-        var boro;
-        if (boro_cd > 500) {
-          boro = 'Staten Island';
-        } else if (boro_cd > 400) {
-          boro = 'Queens';
-        } else if (boro_cd > 300) {
-          boro = 'Brooklyn';
-        } else if (boro_cd > 200) {
-          boro = 'Bronx';
-        } else {
-          boro = 'Manhttan'
-        }
-        return `${boro} ${parseInt(boro_cd.slice(-2))}<br>${Math.round(100*d.total)}%`;
-    })
+        return `${recodeBoroCd(d)}<br>${Math.round(100*d.total)}%`;
+      });
 
     // Apply the tooltip to the svg
     svg.call(tool_tip);
@@ -106,16 +110,28 @@ function renderMap(width, height) {
         return colorScale(d.total);
       })
       .on('mouseover', tool_tip.show)
-      .on("mouseover", function(d) {
-        d3.select(this).style('stroke', 'black')
-          .attr('stroke-opacity', 1)
-          .attr('stroke-width', 1.5);
-      })
-      .on('mouseout', tool_tip.hide)
-      .on("mouseout", function(d) {
-        d3.select(this).style('stroke', 'white')
-          .attr('stroke-opacity', 0);
-      });
+      .on('mouseout', tool_tip.hide);
+
+      // // Draw outlines when hovered
+      // svg.append("g")
+      //   .selectAll("path")
+      //   .data(cds.features)
+      //   .enter()
+      //   .append("path")
+      //   // draw each country
+      //   .attr("d", path)
+      //   // set the color of each country
+      //   .attr("fill-opacity", 0)
+      //   // show stroke
+      //   .on("mouseover", function(d) {
+      //     d3.select(this).style('stroke', 'black')
+      //       .attr('stroke-opacity', 1)
+      //       .attr('stroke-width', 1.5);
+      //   })
+      //   .on("mouseout", function(d) {
+      //     d3.select(this).style('stroke', 'white')
+      //       .attr('stroke-opacity', 0);
+      //   });
 
       // Legend
       var g = svg.append("g")
