@@ -6,7 +6,7 @@
 This is an interactive map showing which NYC Community Districts have the most households without broadband internet access. It is a simple vanilla JavaScript application with a d3.js chloropleth map.
 
 ## Data sources
-- The household internet access data is sourced directly from live data on [NYC Open Data, Dept. of Environmental Protection, "Water Consumption In The New York City"](https://data.cityofnewyork.us/Environment/Water-Consumption-In-The-New-York-City/ia2d-e54m)
+- The household internet access data is sourced directly from live data on [NYC Open Data, "Internet Master Plan: Broadband Adoption and Infrastructure by Community District"](https://data.cityofnewyork.us/Environment/Water-Consumption-In-The-New-York-City/ia2d-e54m) (updated annually)
 - The Community District boundaries were originally sourced from [NYC Open Data, Dept. of City Planning "Community Districts"](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4). However, the file was too large and contained unnecessary details (like piers) for the citywide zoom level of the map. I used [mapshaper.org](https://mapshaper.org/) to simplify the geometries and reduce the file size. The [resized GeoJSON](https://github.com/hannahkates/nyc-internet-access/blob/master/data/Community%20Districts.geojson) is stored in this repo.
 
 ## Dependencies
